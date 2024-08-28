@@ -7,7 +7,7 @@
     "eslint"
   ],
   "version": "1.0.0",
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/index.js",
   "typings": "./dist/index.d.ts",
   "files": [
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@stylistic/eslint-plugin": "^2.6.4",
+    "deepmerge": "^4.3.1",
     "eslint": "^9.9.1",
     "eslint-plugin-tailwindcss": "^3.17.4"
   },
