@@ -23,6 +23,7 @@
     "README.md"
   ],
   "scripts": {
+    "prepare": "husky",
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "eslint",
