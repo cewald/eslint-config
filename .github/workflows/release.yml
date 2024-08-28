@@ -8,7 +8,7 @@ on:
 
 jobs:
   release:
-    name: "@spiribo/coding-syle-guide package"
+    name: "@cewald/eslint-config package"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
