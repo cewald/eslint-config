@@ -15,7 +15,7 @@ export const config = (props: ConfigProps) => {
   const confArray = []
 
   if (tailwindcss) {
-    confArray.push(pluginTailwindCSS.configs['flat/recommended'])
+    confArray.push(...pluginTailwindCSS.configs['flat/recommended'])
   }
 
   confArray.push(
