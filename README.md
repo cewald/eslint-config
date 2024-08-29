@@ -6,13 +6,13 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
 
 ## Install & setup `eslint` and `prettier` with this package
 
-2. Install packages:
+1. Install packages:
 
    ```bash
    npm i -D eslint @cewald/eslint-config
    ```
 
-3. Add `eslint.config.mjs` to root directory:
+1. Add `eslint.config.mjs` to root directory:
 
    ```js
    import config from '@cewald/eslint-config'
@@ -20,7 +20,7 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    export default [...config()]
    ```
 
-4. For autoformat on save in VSCode, add VSCode settings to workspace settings in `.vscode/settings.json`:
+1. For autoformat on save in VSCode, add VSCode settings to workspace settings in `.vscode/settings.json`:
 
    ```json
    {
@@ -31,7 +31,7 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    }
    ```
 
-5. Add linting commands to `package.json`:
+1. Add linting commands to `package.json`:
 
    ```json
    "scripts": {
@@ -40,7 +40,7 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    }
    ```
 
-6. Remove unnecessary packages
+1. Remove unnecessary packages
 
 ## Setup linting and format pre-commit hooks with `husky`
 
@@ -70,7 +70,7 @@ With this configured changed files will automatically be formatted and linted on
 ## Development
 
 1. Simply run `npm run dev`
-2. You can use `npm link` to use a local version in your local repos
+1. You can use `npm link` to use a local version in your local repos
 
 ## Debug `eslint` config
 
