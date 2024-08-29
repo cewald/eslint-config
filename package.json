@@ -54,8 +54,6 @@
     ]
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "provenance": true,
     "access": "public"
   }
 }
