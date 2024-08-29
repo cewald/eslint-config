@@ -6,11 +6,6 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
 
 ## Install & setup `eslint` and `prettier` with this package
 
-1. Add `.npmrc` file to the root-folder to scope `@cewald/` packages to the GitHub package registry:
-   ```
-   @cewald:registry=https://npm.pkg.github.com/
-   ```
-
 2. Install packages:
 
    ```bash
