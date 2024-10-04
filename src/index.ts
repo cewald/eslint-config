@@ -4,18 +4,29 @@ import merge from 'deepmerge'
 
 export type ConfigProps = {
   tailwindcss?: boolean
+  tailwindcssConfig?: Record<string, unknown>
 }
 
 const DefaultConfigProps: ConfigProps = {
-  tailwindcss: false,
+  tailwindcss: true,
+  tailwindcssConfig: {},
 }
 
 export const config = (props: ConfigProps) => {
-  const { tailwindcss } = merge({ ...DefaultConfigProps }, props || {})
+  const { tailwindcss, tailwindcssConfig } = merge({ ...DefaultConfigProps }, props || {})
   const confArray = []
 
   if (tailwindcss) {
     confArray.push(...pluginTailwindCSS.configs['flat/recommended'])
+    confArray.push({
+      settings: {
+        tailwindcss: merge({
+          cssFiles: [
+            'src/**/*.{css,scss}',
+          ],
+        }, tailwindcssConfig),
+      },
+    })
   }
 
   confArray.push(
