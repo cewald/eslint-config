@@ -1,9 +1,11 @@
+import vue from 'eslint-plugin-vue'
 import stylistic from '@stylistic/eslint-plugin'
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
 import pluginTailwindCSS from 'eslint-plugin-tailwindcss'
 import merge from 'deepmerge'
 
 export type ConfigProps = {
+  initVuePlugin?: boolean
   initStylisticPlugin?: boolean
   stylistic?: StylisticCustomizeOptions
   tailwindcss?: boolean
@@ -11,6 +13,7 @@ export type ConfigProps = {
 }
 
 const DefaultConfigProps: ConfigProps = {
+  initVuePlugin: false,
   initStylisticPlugin: true,
   tailwindcss: true,
   tailwindcssConfig: {},
@@ -18,6 +21,7 @@ const DefaultConfigProps: ConfigProps = {
 
 export const config = (props: ConfigProps) => {
   const {
+    initVuePlugin,
     initStylisticPlugin,
     stylistic: stylisticConfig,
     tailwindcss,
@@ -62,6 +66,16 @@ export const config = (props: ConfigProps) => {
       '@stylistic/operator-linebreak': [ 'error' ],
       '@stylistic/function-call-spacing': [ 'error' ],
       '@stylistic/function-paren-newline': [ 'error' ],
+    },
+  })
+
+  if (initVuePlugin) {
+    confArray.push(...vue.configs['flat/recommended'])
+  }
+
+  confArray.push({
+    rules: {
+      'vue/block-order': [ 'error', { order: [ 'script', 'template', 'style' ] } ],
     },
   })
 
