@@ -9,7 +9,9 @@ export type ConfigProps = {
   initStylisticPlugin?: boolean
   stylistic?: StylisticCustomizeOptions
   tailwindcss?: boolean
-  tailwindcssConfig?: Record<string, unknown>
+  tailwindcssConfig?: Record<string, unknown> & {
+    customClassProperties?: string[]
+  }
 }
 
 const DefaultConfigProps: ConfigProps = {
@@ -30,6 +32,7 @@ export const config = (props: ConfigProps) => {
   const confArray = []
 
   if (tailwindcss) {
+    const { customClassProperties, ...tailwindcssConfigRest } = tailwindcssConfig
     confArray.push(...pluginTailwindCSS.configs['flat/recommended'])
     confArray.push({
       settings: {
@@ -37,7 +40,10 @@ export const config = (props: ConfigProps) => {
           cssFiles: [
             'src/**/*.{css,scss}',
           ],
-        }, tailwindcssConfig),
+          classRegex: customClassProperties
+            ? `^(${[ 'class(Name)?', ...customClassProperties ].join('|')})$`
+            : undefined,
+        }, tailwindcssConfigRest),
       },
     })
   }
