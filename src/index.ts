@@ -16,7 +16,7 @@ export type ConfigProps = {
 
 const DefaultConfigProps: ConfigProps = {
   initVuePlugin: false,
-  initStylisticPlugin: true,
+  initStylisticPlugin: false,
   tailwindcss: true,
   tailwindcssConfig: {},
 }
