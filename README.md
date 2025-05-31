@@ -17,7 +17,7 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    ```js
    import config from '@cewald/eslint-config'
 
-   export default [ ...config() ]
+   export default [...config()]
    ```
 
 1. For autoformat on save in VSCode, add VSCode settings to workspace settings in `.vscode/settings.json`:
@@ -25,9 +25,9 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    ```json
    {
      "editor.formatOnSave": false,
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "always"
-      }
+     "editor.codeActionsOnSave": {
+       "source.fixAll.eslint": "always"
+     }
    }
    ```
 

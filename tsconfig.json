@@ -15,14 +15,14 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    
+
     /* Linting */
     "strict": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src", "types"],
   "exclude": ["node_modules", "dist"]
