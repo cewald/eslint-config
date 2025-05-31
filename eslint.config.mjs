@@ -3,8 +3,11 @@ import tsEslint from 'typescript-eslint'
 import config from '@cewald/eslint-config'
 
 export default [
-  { ignores: [ 'node_modules', 'dist' ] },
+  { ignores: ['node_modules', 'dist'] },
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommended,
-  ...config({ initVuePlugin: true, initStylisticPlugin: true }),
+  ...config({
+    initVuePlugin: true,
+    useStylisticPlugin: false,
+  }),
 ]

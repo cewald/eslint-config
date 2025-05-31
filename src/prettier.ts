@@ -1,13 +1,13 @@
 import type { Options } from 'prettier'
 
 const config: Options = {
-  trailingComma: 'none',
+  trailingComma: 'all',
   tabWidth: 2,
   semi: false,
   singleQuote: true,
   overrides: [
     {
-      files: [ '*.yaml', '*.yml' ],
+      files: ['*.yaml', '*.yml'],
       options: { singleQuote: false },
     },
   ],
