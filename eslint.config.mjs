@@ -6,5 +6,5 @@ export default [
   { ignores: [ 'node_modules', 'dist' ] },
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommended,
-  ...config({ initVuePlugin: true }),
+  ...config({ initVuePlugin: true, initStylisticPlugin: true }),
 ]
