@@ -84,7 +84,7 @@ export const config = (props: ConfigProps) => {
         'better-tailwindcss/enforce-consistent-line-wrapping': [
           'warn',
           {
-            group: 'newLine',
+            group: 'never',
             preferSingleLine: true,
             printWidth: 120,
             classesPerLine: 8,

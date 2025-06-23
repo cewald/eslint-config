@@ -24,7 +24,8 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
 
    ```json
    {
-     "editor.formatOnSave": false,
+     "editor.formatOnSave": true,
+     "editor.defaultFormatter": "esbenp.prettier-vscode",
      "editor.codeActionsOnSave": {
        "source.fixAll.eslint": "always"
      }
