@@ -72,6 +72,25 @@ export const config = (props: ConfigProps) => {
           tailwindcssConfigRest,
         ),
       },
+      rules: {
+        ...(version === '4'
+          ? {
+              'better-tailwindcss/no-unregistered-classes': [
+                'warn',
+                { detectComponentClasses: 'never' },
+              ],
+            }
+          : {}),
+        'better-tailwindcss/enforce-consistent-line-wrapping': [
+          'warn',
+          {
+            group: 'newLine',
+            preferSingleLine: true,
+            printWidth: 120,
+            classesPerLine: 8,
+          },
+        ],
+      },
     })
   }
 
