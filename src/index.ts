@@ -53,16 +53,21 @@ export const config = (props: ConfigProps) => {
       rules: { ...pluginTailwindCSS.configs['recommended-warn'].rules },
     })
 
+    if (customClassProperties) {
+      confArray.push({
+        'better-tailwindcss': {
+          attributes: [
+            `^(${['class(Name)?', ...customClassProperties].join('|')})$`,
+          ],
+        },
+      })
+    }
+
     confArray.push({
       settings: {
         'better-tailwindcss': merge(
           {
             [version === '3' ? 'tailwindConfig' : 'entryPoint']: configFile,
-            attributes: [
-              customClassProperties
-                ? `^(${['class(Name)?', ...customClassProperties].join('|')})$`
-                : undefined,
-            ].filter(Boolean),
           },
           tailwindcssConfigRest,
         ),
