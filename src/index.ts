@@ -48,7 +48,11 @@ export const config = (props: ConfigProps) => {
       ...tailwindcssConfigRest
     } = tailwindcssConfig
 
-    confArray.push(pluginTailwindCSS)
+    confArray.push({
+      plugins: { 'better-tailwindcss': pluginTailwindCSS },
+      rules: { ...pluginTailwindCSS.configs['recommended-warn'].rules },
+    })
+
     confArray.push({
       settings: {
         'better-tailwindcss': merge(
