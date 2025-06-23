@@ -77,7 +77,7 @@ export const config = (props: ConfigProps) => {
           ? {
               'better-tailwindcss/no-unregistered-classes': [
                 'warn',
-                { detectComponentClasses: 'never' },
+                { detectComponentClasses: true },
               ],
             }
           : {}),
