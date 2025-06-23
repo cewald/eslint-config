@@ -1,7 +1,7 @@
 import vue from 'eslint-plugin-vue'
 import stylistic from '@stylistic/eslint-plugin'
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
-import pluginTailwindCSS from 'eslint-plugin-tailwindcss'
+import pluginTailwindCSS from 'eslint-plugin-better-tailwindcss'
 import merge from 'deepmerge'
 
 export { default as prettier } from './prettier.js'
@@ -13,6 +13,8 @@ export type ConfigProps = {
   stylistic?: StylisticCustomizeOptions
   tailwindcss?: boolean
   tailwindcssConfig?: Record<string, unknown> & {
+    config?: string
+    version?: '4' | '3'
     customClassProperties?: string[]
   }
 }
@@ -22,7 +24,9 @@ const DefaultConfigProps: ConfigProps = {
   useStylisticPlugin: true,
   initStylisticPlugin: false,
   tailwindcss: true,
-  tailwindcssConfig: {},
+  tailwindcssConfig: {
+    version: '3',
+  },
 }
 
 export const config = (props: ConfigProps) => {
@@ -37,17 +41,24 @@ export const config = (props: ConfigProps) => {
   const confArray = []
 
   if (tailwindcss) {
-    const { customClassProperties, ...tailwindcssConfigRest } =
-      tailwindcssConfig
-    confArray.push(...pluginTailwindCSS.configs['flat/recommended'])
+    const {
+      version,
+      config: configFile,
+      customClassProperties,
+      ...tailwindcssConfigRest
+    } = tailwindcssConfig
+
+    confArray.push(pluginTailwindCSS)
     confArray.push({
       settings: {
-        tailwindcss: merge(
+        'better-tailwindcss': merge(
           {
-            cssFiles: ['src/**/*.{css,scss}'],
-            classRegex: customClassProperties
-              ? `^(${['class(Name)?', ...customClassProperties].join('|')})$`
-              : undefined,
+            [version === '3' ? 'tailwindConfig' : 'entryPoint']: configFile,
+            attributes: [
+              customClassProperties
+                ? `^(${['class(Name)?', ...customClassProperties].join('|')})$`
+                : undefined,
+            ].filter(Boolean),
           },
           tailwindcssConfigRest,
         ),
