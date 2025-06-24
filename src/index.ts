@@ -73,14 +73,8 @@ export const config = (props: ConfigProps) => {
         ),
       },
       rules: {
-        ...(version === '4'
-          ? {
-              'better-tailwindcss/no-unregistered-classes': [
-                'warn',
-                { detectComponentClasses: true },
-              ],
-            }
-          : {}),
+        'better-tailwindcss/no-unregistered-classes':
+          version === '4' ? ['warn', { detectComponentClasses: true }] : 'off',
         'better-tailwindcss/enforce-consistent-line-wrapping': [
           'warn',
           {
