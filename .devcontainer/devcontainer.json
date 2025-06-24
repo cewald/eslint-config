@@ -10,7 +10,8 @@
         "christian-kohler.npm-intellisense",
         "dbaeumer.vscode-eslint",
         "VisualStudioExptTeam.vscodeintellicode",
-        "wix.vscode-import-cost"
+        "wix.vscode-import-cost",
+        "esbenp.prettier-vscode"
       ]
     }
   },

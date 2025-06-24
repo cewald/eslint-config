@@ -17,19 +17,30 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    ```js
    import config from '@cewald/eslint-config'
 
-   export default [ ...config() ]
+   export default [...config()]
    ```
 
 1. For autoformat on save in VSCode, add VSCode settings to workspace settings in `.vscode/settings.json`:
 
-   ```json
-   {
-     "editor.formatOnSave": false,
-      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "always"
-      }
-   }
-   ```
+   - When using `prettier`:
+     ```json
+     {
+       "editor.formatOnSave": true,
+       "editor.defaultFormatter": "esbenp.prettier-vscode",
+       "editor.codeActionsOnSave": {
+         "source.fixAll.eslint": "always"
+       }
+     }
+     ```
+   - When not using `prettier`:
+     ```json
+     {
+       "editor.formatOnSave": false,
+       "editor.codeActionsOnSave": {
+         "source.fixAll.eslint": "always"
+       }
+     }
+     ```
 
 1. Add linting commands to `package.json`:
 
