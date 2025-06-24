@@ -1,3 +1,6 @@
+import { createRequire } from 'module'
+import { major } from 'semver'
+
 import vue from 'eslint-plugin-vue'
 import stylistic from '@stylistic/eslint-plugin'
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
@@ -14,7 +17,6 @@ export type ConfigProps = {
   tailwindcss?: boolean
   tailwindcssConfig?: Record<string, unknown> & {
     config?: string
-    version?: '4' | '3'
     customClassProperties?: string[]
   }
 }
@@ -24,9 +26,7 @@ const DefaultConfigProps: ConfigProps = {
   useStylisticPlugin: true,
   initStylisticPlugin: false,
   tailwindcss: true,
-  tailwindcssConfig: {
-    version: '3',
-  },
+  tailwindcssConfig: {},
 }
 
 export const config = (props: ConfigProps) => {
@@ -42,11 +42,14 @@ export const config = (props: ConfigProps) => {
 
   if (tailwindcss) {
     const {
-      version,
       config: configFile,
       customClassProperties,
       ...tailwindcssConfigRest
     } = tailwindcssConfig
+
+    const require = createRequire(import.meta.url)
+    const pkgPath = require.resolve('tailwindcss/package.json')
+    const tailwindVersion = major(require(pkgPath).version || 3)
 
     confArray.push({
       plugins: { 'better-tailwindcss': pluginTailwindCSS },
@@ -67,14 +70,17 @@ export const config = (props: ConfigProps) => {
       settings: {
         'better-tailwindcss': merge(
           {
-            [version === '3' ? 'tailwindConfig' : 'entryPoint']: configFile,
+            [tailwindVersion === 3 ? 'tailwindConfig' : 'entryPoint']:
+              configFile,
           },
           tailwindcssConfigRest,
         ),
       },
       rules: {
         'better-tailwindcss/no-unregistered-classes':
-          version === '4' ? ['warn', { detectComponentClasses: true }] : 'off',
+          tailwindVersion === 4
+            ? ['warn', { detectComponentClasses: true }]
+            : 'off',
         'better-tailwindcss/enforce-consistent-line-wrapping': [
           'warn',
           {
