@@ -105,7 +105,7 @@ export const config = (props: ConfigProps) => {
         '@stylistic/quotes': [
           2,
           'single',
-          { avoidEscape: true, allowTemplateLiterals: false },
+          { avoidEscape: true, allowTemplateLiterals: 'never' },
         ],
         '@stylistic/arrow-parens': ['error', 'as-needed'],
         '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
