@@ -10,18 +10,26 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
 
    ```bash
    npm i -D eslint @cewald/eslint-config
+
+   # If want to use prettier:
+   npm i -D prettier
    ```
 
 1. Add `eslint.config.mjs` to root directory:
 
    ```js
    import config from '@cewald/eslint-config'
-
    export default [...config()]
    ```
 
-1. For autoformat on save in VSCode, add VSCode settings to workspace settings in `.vscode/settings.json`:
+1. Add `.prettierrc` to root directory (if want to use prettier):
 
+   ```js
+   import { prettier } from '@cewald/eslint-config'
+   export default prettier
+   ```
+
+1. For autoformat on save in VSCode, add VSCode settings to workspace settings in `.vscode/settings.json`:
    - When using `prettier`:
      ```json
      {
