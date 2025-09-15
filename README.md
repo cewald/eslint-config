@@ -33,6 +33,7 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    - When using `prettier`:
      ```json
      {
+       "prettier.enable": true,
        "editor.formatOnSave": true,
        "editor.defaultFormatter": "esbenp.prettier-vscode",
        "editor.codeActionsOnSave": {
