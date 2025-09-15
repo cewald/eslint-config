@@ -1,7 +1,7 @@
 import type { Options } from 'prettier'
 
 const config: Options = {
-  trailingComma: 'all',
+  trailingComma: 'es5',
   tabWidth: 2,
   semi: false,
   singleQuote: true,
