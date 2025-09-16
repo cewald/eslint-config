@@ -42,7 +42,7 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
        }
      }
      ```
-   - When not using `prettier`:
+   - When using `stylistic`:
      ```json
      {
        "editor.formatOnSave": false,
