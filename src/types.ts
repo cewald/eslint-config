@@ -26,7 +26,5 @@ declare global {
     type: 'prettier'
   }
 
-  export type ConfigInput =
-    | (ConfigPropsStylistic & ConfigPropsBase)
-    | (ConfigPropsPrettier & ConfigPropsBase)
+  export type ConfigInput = (ConfigPropsStylistic & ConfigPropsBase) | (ConfigPropsPrettier & ConfigPropsBase)
 }

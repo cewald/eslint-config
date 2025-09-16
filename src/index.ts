@@ -8,7 +8,6 @@ import eslintConfigPrettier from 'eslint-config-prettier/flat'
 import merge from 'deepmerge'
 
 export * from './types.js'
-export { prettier } from './prettier.js'
 
 export const config = (props: ConfigInput = { type: 'prettier' }) => {
   const confArray = []
@@ -16,11 +15,7 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
 
   if (tailwindcss) {
     const { tailwindcssConfig } = props
-    const {
-      config: configFile,
-      customClassProperties,
-      ...tailwindcssConfigRest
-    } = tailwindcssConfig || {}
+    const { config: configFile, customClassProperties, ...tailwindcssConfigRest } = tailwindcssConfig || {}
 
     const require = createRequire(import.meta.url)
     const pkgPath = require.resolve('tailwindcss/package.json')
@@ -34,9 +29,7 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
     if (customClassProperties) {
       confArray.push({
         'better-tailwindcss': {
-          attributes: [
-            `^(${['class(Name)?', ...customClassProperties].join('|')})$`,
-          ],
+          attributes: [`^(${['class(Name)?', ...customClassProperties].join('|')})$`],
         },
       })
     }
@@ -45,17 +38,14 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
       settings: {
         'better-tailwindcss': merge(
           {
-            [tailwindVersion === 3 ? 'tailwindConfig' : 'entryPoint']:
-              configFile,
+            [tailwindVersion === 3 ? 'tailwindConfig' : 'entryPoint']: configFile,
           },
           tailwindcssConfigRest
         ),
       },
       rules: {
         'better-tailwindcss/no-unregistered-classes':
-          tailwindVersion === 4
-            ? ['warn', { detectComponentClasses: true }]
-            : 'off',
+          tailwindVersion === 4 ? ['warn', { detectComponentClasses: true }] : 'off',
         'better-tailwindcss/enforce-consistent-line-wrapping': [
           'warn',
           {
@@ -78,10 +68,7 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
 
     confArray.push({
       rules: {
-        'vue/block-order': [
-          'error',
-          { order: ['script', 'template', 'style'] },
-        ],
+        'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
       },
     })
   }
@@ -98,11 +85,7 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
     confArray.push({
       rules: {
         '@stylistic/max-len': ['error', { code: 120 }],
-        '@stylistic/quotes': [
-          2,
-          'single',
-          { avoidEscape: true, allowTemplateLiterals: 'never' },
-        ],
+        '@stylistic/quotes': [2, 'single', { avoidEscape: true, allowTemplateLiterals: 'never' }],
         '@stylistic/arrow-parens': ['error', 'as-needed'],
         '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
         '@stylistic/array-bracket-spacing': ['error', 'always'],

@@ -16,8 +16,16 @@
   },
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./prettier": {
+      "types": "./dist/prettier.d.ts",
+      "import": "./dist/prettier.js"
+    }
+  },
   "files": [
     "dist",
     "README.md"

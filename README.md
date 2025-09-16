@@ -25,7 +25,7 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
 1. Add `.prettierrc.mjs` to root directory (if want to use prettier):
 
    ```js
-   import { prettier } from '@cewald/eslint-config'
+   import { prettier } from '@cewald/eslint-config/prettier'
    export default prettier
    ```
 
