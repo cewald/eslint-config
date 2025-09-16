@@ -1,17 +1,16 @@
 import type { Options } from 'prettier'
 
 const prettier: Options = {
-  trailingComma: 'es5',
+  trailingComma: 'all',
   tabWidth: 2,
   printWidth: 120,
   semi: false,
   singleQuote: true,
-  overrides: [
-    {
-      files: ['*.yaml', '*.yml'],
-      options: { singleQuote: false },
-    },
-  ],
+  quoteProps: 'consistent',
+  objectWrap: 'collapse',
+  arrowParens: 'avoid',
+  singleAttributePerLine: true,
+  overrides: [{ files: ['*.yaml', '*.yml'], options: { singleQuote: false } }],
 }
 
 export { prettier }
