@@ -36,7 +36,10 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
        "prettier.enable": true,
        "editor.formatOnSave": true,
        "editor.defaultFormatter": "esbenp.prettier-vscode",
-       "[vue]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }, // For Vue.js formatting
+       "[vue]": {
+         // For Vue.js formatting
+         "editor.defaultFormatter": "esbenp.prettier-vscode"
+       },
        "editor.codeActionsOnSave": {
          "source.fixAll.eslint": "always"
        }
