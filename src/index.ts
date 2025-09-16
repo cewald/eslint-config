@@ -1,51 +1,26 @@
 import { createRequire } from 'module'
 import { major } from 'semver'
 
-import vue from 'eslint-plugin-vue'
+import vuePlugin from 'eslint-plugin-vue'
 import stylistic from '@stylistic/eslint-plugin'
-import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
 import pluginTailwindCSS from 'eslint-plugin-better-tailwindcss'
+import eslintConfigPrettier from 'eslint-config-prettier/flat'
 import merge from 'deepmerge'
 
-export { default as prettier } from './prettier.js'
+export * from './types.js'
+export { prettier } from './prettier.js'
 
-export type ConfigProps = {
-  initVuePlugin?: boolean
-  useStylisticPlugin?: boolean
-  initStylisticPlugin?: boolean
-  stylistic?: StylisticCustomizeOptions
-  tailwindcss?: boolean
-  tailwindcssConfig?: Record<string, unknown> & {
-    config?: string
-    customClassProperties?: string[]
-  }
-}
-
-const DefaultConfigProps: ConfigProps = {
-  initVuePlugin: false,
-  useStylisticPlugin: true,
-  initStylisticPlugin: false,
-  tailwindcss: true,
-  tailwindcssConfig: {},
-}
-
-export const config = (props: ConfigProps) => {
-  const {
-    initVuePlugin,
-    useStylisticPlugin,
-    initStylisticPlugin,
-    stylistic: stylisticConfig,
-    tailwindcss,
-    tailwindcssConfig,
-  } = merge({ ...DefaultConfigProps }, props || {})
+export const config = (props: ConfigInput = { type: 'prettier' }) => {
   const confArray = []
+  const { type, tailwindcss = false, vue = false } = props
 
   if (tailwindcss) {
+    const { tailwindcssConfig } = props
     const {
       config: configFile,
       customClassProperties,
       ...tailwindcssConfigRest
-    } = tailwindcssConfig
+    } = tailwindcssConfig || {}
 
     const require = createRequire(import.meta.url)
     const pkgPath = require.resolve('tailwindcss/package.json')
@@ -73,7 +48,7 @@ export const config = (props: ConfigProps) => {
             [tailwindVersion === 3 ? 'tailwindConfig' : 'entryPoint']:
               configFile,
           },
-          tailwindcssConfigRest,
+          tailwindcssConfigRest
         ),
       },
       rules: {
@@ -94,7 +69,28 @@ export const config = (props: ConfigProps) => {
     })
   }
 
-  if (useStylisticPlugin) {
+  if (vue) {
+    const { initVuePlugin } = props
+
+    if (initVuePlugin) {
+      confArray.push(...vuePlugin.configs['flat/recommended'])
+    }
+
+    confArray.push({
+      rules: {
+        'vue/block-order': [
+          'error',
+          { order: ['script', 'template', 'style'] },
+        ],
+      },
+    })
+  }
+
+  if (type === 'prettier') {
+    confArray.push(eslintConfigPrettier)
+  } else if (type === 'stylistic') {
+    const { initStylisticPlugin, stylistic: stylisticConfig } = props
+
     if (initStylisticPlugin) {
       confArray.push(stylistic.configs.customize(stylisticConfig))
     }
@@ -128,16 +124,6 @@ export const config = (props: ConfigProps) => {
       },
     })
   }
-
-  if (initVuePlugin) {
-    confArray.push(...vue.configs['flat/recommended'])
-  }
-
-  confArray.push({
-    rules: {
-      'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
-    },
-  })
 
   return confArray
 }

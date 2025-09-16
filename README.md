@@ -19,10 +19,10 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
 
    ```js
    import config from '@cewald/eslint-config'
-   export default [...config()]
+   export default [...config(/* Configs here...*/)]
    ```
 
-1. Add `.prettierrc` to root directory (if want to use prettier):
+1. Add `.prettierrc.mjs` to root directory (if want to use prettier):
 
    ```js
    import { prettier } from '@cewald/eslint-config'
@@ -60,8 +60,6 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    }
    ```
 
-1. Remove unnecessary packages
-
 ## Setup linting and format pre-commit hooks with `husky`
 
 With this configured changed files will automatically be formatted and linted on commit.
@@ -79,13 +77,23 @@ With this configured changed files will automatically be formatted and linted on
    ```
 
 1. Add `lint-staged` config to `package.json`:
-   ```json
-   "lint-staged": {
-    "*": [
-      "npm run lint:fix"
-    ]
-   }
-   ```
+   - When using `prettier`:
+     ```json
+     "lint-staged": {
+      "*": [
+        "prettier --write --ignore-unknown",
+        "npm run lint:fix"
+      ]
+     }
+     ```
+   - When using `stylistic`:
+     ```json
+     "lint-staged": {
+      "*": [
+        "npm run lint:fix"
+      ]
+     }
+     ```
 
 ## Development
 

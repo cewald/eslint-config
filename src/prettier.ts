@@ -1,6 +1,6 @@
 import type { Options } from 'prettier'
 
-const config: Options = {
+const prettier: Options = {
   trailingComma: 'es5',
   tabWidth: 2,
   semi: false,
@@ -13,4 +13,6 @@ const config: Options = {
   ],
 }
 
-export default config
+export { prettier }
+
+export default prettier

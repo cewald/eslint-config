@@ -7,7 +7,6 @@ export default [
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommended,
   ...config({
-    initVuePlugin: true,
-    useStylisticPlugin: false,
+    type: 'prettier',
   }),
 ]
