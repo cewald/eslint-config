@@ -13,7 +13,7 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
   const confArray = []
   const { type, tailwindcss = false, vue = false } = props
 
-  if (tailwindcss) {
+  if (tailwindcss && type !== 'prettier') {
     const { tailwindcssConfig } = props
     const { config: configFile, customClassProperties, ...tailwindcssConfigRest } = tailwindcssConfig || {}
 
@@ -28,19 +28,15 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
 
     if (customClassProperties) {
       confArray.push({
-        'better-tailwindcss': {
-          attributes: [`^(${['class(Name)?', ...customClassProperties].join('|')})$`],
-        },
+        'better-tailwindcss': { attributes: [`^(${['class(Name)?', ...customClassProperties].join('|')})$`] },
       })
     }
 
     confArray.push({
       settings: {
         'better-tailwindcss': merge(
-          {
-            [tailwindVersion === 3 ? 'tailwindConfig' : 'entryPoint']: configFile,
-          },
-          tailwindcssConfigRest
+          { [tailwindVersion === 3 ? 'tailwindConfig' : 'entryPoint']: configFile },
+          tailwindcssConfigRest,
         ),
       },
       rules: {
@@ -48,12 +44,7 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
           tailwindVersion === 4 ? ['warn', { detectComponentClasses: true }] : 'off',
         'better-tailwindcss/enforce-consistent-line-wrapping': [
           'warn',
-          {
-            group: 'never',
-            preferSingleLine: true,
-            printWidth: 120,
-            classesPerLine: 8,
-          },
+          { group: 'never', preferSingleLine: true, printWidth: 120, classesPerLine: 8 },
         ],
       },
     })
@@ -66,15 +57,12 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
       confArray.push(...vuePlugin.configs['flat/recommended'])
     }
 
-    confArray.push({
-      rules: {
-        'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
-      },
-    })
+    confArray.push({ rules: { 'vue/block-order': ['error', { order: ['script', 'template', 'style'] }] } })
   }
 
   if (type === 'prettier') {
     confArray.push(eslintConfigPrettier)
+    confArray.push({ rules: { 'vue/first-attribute-linebreak': 'off' } })
   } else if (type === 'stylistic') {
     const { initStylisticPlugin, stylistic: stylisticConfig } = props
 
