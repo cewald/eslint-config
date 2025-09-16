@@ -17,6 +17,7 @@ export const config = (props: ConfigInput = {}) => {
     confArray.push({
       rules: {
         'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
+        'vue/require-default-prop': 'off',
       },
     })
   }
