@@ -1,7 +1,7 @@
 import merge from 'deepmerge'
 
 const prettier = (props: { tailwindcss?: boolean } & PrettierOptionsReturn = {}): PrettierOptionsReturn => {
-  const { tailwindcss = false } = props
+  const { tailwindcss = false, ...restProps } = props
 
   const config: PrettierOptionsReturn = merge(
     {
@@ -16,7 +16,7 @@ const prettier = (props: { tailwindcss?: boolean } & PrettierOptionsReturn = {})
       overrides: [{ files: ['*.yaml', '*.yml'], options: { singleQuote: false } }],
       plugins: [],
     },
-    props,
+    restProps,
   )
 
   if (tailwindcss) {
