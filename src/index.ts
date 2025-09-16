@@ -62,7 +62,12 @@ export const config = (props: ConfigInput = { type: 'prettier' }) => {
 
   if (type === 'prettier') {
     confArray.push(eslintConfigPrettier)
-    confArray.push({ rules: { 'vue/first-attribute-linebreak': 'off' } })
+    confArray.push({
+      rules: {
+        'vue/first-attribute-linebreak': 'off',
+        'vue/html-self-closing': 'off',
+      },
+    })
   } else if (type === 'stylistic') {
     const { initStylisticPlugin, stylistic: stylisticConfig } = props
 
