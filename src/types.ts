@@ -1,6 +1,5 @@
 import type { Options as PrettierOptions } from 'prettier'
 import { PluginOptions as PrettierTailwindOptions } from 'prettier-plugin-tailwindcss'
-import { PrettierPluginOrganizeAttributesParserOptions } from 'prettier-plugin-organize-attributes'
 
 declare global {
   export type ConfigTypes = 'prettier'
@@ -14,7 +13,5 @@ declare global {
 
   export type ConfigInput = ConfigPropsTailwind & ConfigPropsVue
 
-  export type PrettierOptionsReturn = PrettierOptions &
-    PrettierTailwindOptions &
-    Partial<PrettierPluginOrganizeAttributesParserOptions>
+  export type PrettierOptionsReturn = PrettierOptions & PrettierTailwindOptions
 }

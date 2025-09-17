@@ -14,9 +14,7 @@ const prettier = (props: { tailwindcss?: boolean } & PrettierOptionsReturn = {})
       arrowParens: 'avoid',
       singleAttributePerLine: true,
       overrides: [{ files: ['*.yaml', '*.yml'], options: { singleQuote: false } }],
-      plugins: ['prettier-plugin-organize-imports', 'prettier-plugin-organize-attributes'],
-      attributeGroups: ['^(id|name)$', '^v-', '^:', '^:aria-', '^aria-', '^:*(class|className|class-name)$'],
-      attributeSort: 'ASC',
+      plugins: ['prettier-plugin-organize-imports'],
     },
     restProps,
   )
