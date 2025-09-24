@@ -7,6 +7,20 @@ export const config = (props: ConfigInput = {}) => {
   const confArray = []
   const { vue = false } = props
 
+  confArray.push({
+    rules: {
+      'sort-imports': [
+        'error',
+        {
+          ignoreCase: true,
+          ignoreDeclarationSort: false,
+          ignoreMemberSort: false,
+          allowSeparatedGroups: false,
+        },
+      ],
+    },
+  })
+
   if (vue) {
     const { initVuePlugin } = props
 
@@ -20,7 +34,6 @@ export const config = (props: ConfigInput = {}) => {
         'vue/block-lang': ['error', { script: { lang: 'ts' } }],
         'vue/eqeqeq': ['error', 'always'],
         'vue/require-default-prop': 'off',
-        'vue/attributes-order': 'off',
         'vue/multi-word-component-names': 'off',
       },
     })
