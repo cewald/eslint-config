@@ -7,20 +7,6 @@ export const config = (props: ConfigInput = {}) => {
   const confArray = []
   const { vue = false } = props
 
-  confArray.push({
-    rules: {
-      'sort-imports': [
-        'error',
-        {
-          ignoreCase: true,
-          ignoreDeclarationSort: false,
-          ignoreMemberSort: false,
-          allowSeparatedGroups: false,
-        },
-      ],
-    },
-  })
-
   if (vue) {
     const { initVuePlugin } = props
 
