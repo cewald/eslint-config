@@ -15,14 +15,14 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
    npm i -D prettier
    ```
 
-1. Add `eslint.config.mjs` to root directory:
+1. Add `eslint.config.ts` to root directory:
 
    ```js
    import config from '@cewald/eslint-config'
    export default [...config()]
    ```
 
-1. Add `.prettierrc` to root directory (if want to use prettier):
+1. Add `prettier.config.ts` to root directory (if want to use prettier):
 
    ```js
    import { prettier } from '@cewald/eslint-config'
