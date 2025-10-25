@@ -82,6 +82,7 @@ With this configured changed files will automatically be formatted and linted on
    ```json
    "lint-staged": {
     "*": [
+      "prettier --write --ignore-unknown",
       "npm run lint:fix"
     ]
    }
