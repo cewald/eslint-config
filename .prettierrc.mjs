@@ -1,2 +1,2 @@
-import { prettier } from '@cewald/eslint-config'
-export default prettier
+import { prettier } from '@cewald/eslint-config/prettier'
+export default prettier()

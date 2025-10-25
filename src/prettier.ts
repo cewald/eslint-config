@@ -1,16 +1,30 @@
-import type { Options } from 'prettier'
+import merge from 'deepmerge'
 
-const config: Options = {
-  trailingComma: 'es5',
-  tabWidth: 2,
-  semi: false,
-  singleQuote: true,
-  overrides: [
+const prettier = (props: { tailwindcss?: boolean } & PrettierOptionsReturn = {}): PrettierOptionsReturn => {
+  const { tailwindcss = false, ...restProps } = props
+
+  const config: PrettierOptionsReturn = merge(
     {
-      files: ['*.yaml', '*.yml'],
-      options: { singleQuote: false },
+      trailingComma: 'all',
+      tabWidth: 2,
+      printWidth: 120,
+      semi: false,
+      singleQuote: true,
+      quoteProps: 'consistent',
+      arrowParens: 'avoid',
+      singleAttributePerLine: true,
+      overrides: [{ files: ['*.yaml', '*.yml'], options: { singleQuote: false } }],
     },
-  ],
+    restProps,
+  )
+
+  if (tailwindcss) {
+    config.plugins?.push('prettier-plugin-tailwindcss')
+  }
+
+  return config
 }
 
-export default config
+export { prettier }
+
+export default prettier

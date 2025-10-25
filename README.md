@@ -9,47 +9,39 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
 1. Install packages:
 
    ```bash
-   npm i -D eslint @cewald/eslint-config
-
-   # If want to use prettier:
-   npm i -D prettier
+   npm i -D eslint prettier @cewald/eslint-config
    ```
 
 1. Add `eslint.config.ts` to root directory:
 
    ```js
    import config from '@cewald/eslint-config'
-   export default [...config()]
+   export default [...config(/* Configs here...*/)]
    ```
 
 1. Add `prettier.config.ts` to root directory (if want to use prettier):
 
    ```js
-   import { prettier } from '@cewald/eslint-config'
-   export default prettier
+   import { prettier } from '@cewald/eslint-config/prettier'
+   export default prettier(/* Configs here...*/)
    ```
 
 1. For autoformat on save in VSCode, add VSCode settings to workspace settings in `.vscode/settings.json`:
-   - When using `prettier`:
-     ```json
-     {
-       "prettier.enable": true,
-       "editor.formatOnSave": true,
-       "editor.defaultFormatter": "esbenp.prettier-vscode",
-       "editor.codeActionsOnSave": {
-         "source.fixAll.eslint": "always"
-       }
+
+   ```json
+   {
+     "prettier.enable": true,
+     "editor.formatOnSave": true,
+     "editor.defaultFormatter": "esbenp.prettier-vscode",
+     "[vue]": {
+       // For Vue.js formatting
+       "editor.defaultFormatter": "esbenp.prettier-vscode"
+     },
+     "editor.codeActionsOnSave": {
+       "source.fixAll.eslint": "always"
      }
-     ```
-   - When not using `prettier`:
-     ```json
-     {
-       "editor.formatOnSave": false,
-       "editor.codeActionsOnSave": {
-         "source.fixAll.eslint": "always"
-       }
-     }
-     ```
+   }
+   ```
 
 1. Add linting commands to `package.json`:
 
@@ -59,8 +51,6 @@ It should be applied to all JS/TS projects to unify the company coding-styles.
       "lint:fix": "eslint --fix",
    }
    ```
-
-1. Remove unnecessary packages
 
 ## Setup linting and format pre-commit hooks with `husky`
 

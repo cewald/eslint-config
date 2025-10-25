@@ -16,8 +16,16 @@
   },
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./prettier": {
+      "types": "./dist/prettier.d.ts",
+      "import": "./dist/prettier.js"
+    }
+  },
   "files": [
     "dist",
     "README.md"
@@ -40,13 +48,12 @@
     "typescript-eslint": "^8.3.0"
   },
   "dependencies": {
-    "@stylistic/eslint-plugin": "^5.1.0",
     "deepmerge": "^4.3.1",
     "eslint": "^9.9.1",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-better-tailwindcss": "^3.7.4",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.0.0",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.14"
   },
   "peerDependencies": {
     "eslint": "^9.9.1",
